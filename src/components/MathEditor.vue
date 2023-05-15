@@ -46,7 +46,7 @@ export default {
     editorContent() {
       if (this.editor) {
         let content = this.editor.getHTML();
-        let strippedContent = '$$' + content.replace(/<\/?p>/g, '') + '$$';
+        let strippedContent = content.replace(/<\/?p>/g, '');
         return strippedContent;
       }
       return '';
@@ -59,7 +59,7 @@ export default {
   },
   mounted() {
     this.editor = new Editor({
-      content: 'x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}',
+      content: 'The quadratic formula is: $x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$.',
       extensions: [
         StarterKit,
       ],
