@@ -71,13 +71,18 @@ export default {
   color: #f15b6a;
 }
 
+textarea {
+  max-height: 80px;
+  min-height: 80px;
+}
+
 button {
-  height: 100px;
+  height: 80px;
   border: 0;
 }
 
 button {
-  height: 100px;
+  height: 80px;
   border: 0;
 }
 
