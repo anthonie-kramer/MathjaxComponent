@@ -10,13 +10,13 @@
     <tbody>
       <tr>
         <td v-show="showEditor">
-          <editor-content :editor="editor" />
+          <textarea v-model="formula"></textarea>
         </td>
         <td>
           <button class @click="toggleEditor"></button>
         </td>
         <td>
-          <vue-mathjax :formula="editorContent" />
+          <vue-mathjax :formula="formula" />
         </td>
       </tr>
     </tbody>
@@ -24,50 +24,32 @@
 </template>
 
 <script>
-import { Editor, EditorContent } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
 import VueMathjax from 'vue-mathjax-next';
+import { ref } from 'vue';
+
+const formula = ref('');
+
 export default {
   components: {
-    EditorContent,
     VueMathjax
   },
   name: "MathEditor",
   props: {
     msg: String,
   },
+  setup() {
+  },
   data() {
     return {
-      editor: null,
-      showEditor: true
+      showEditor: true,
+      formula
     };
-  },
-  computed: {
-    editorContent() {
-      if (this.editor) {
-        let content = this.editor.getHTML();
-        let strippedContent = content.replace(/<\/?p>/g, '');
-        return strippedContent;
-      }
-      return '';
-    }
   },
   methods: {
     toggleEditor() {
       this.showEditor = !this.showEditor;
     }
-  },
-  mounted() {
-    this.editor = new Editor({
-      content: 'The quadratic formula is: $x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$.',
-      extensions: [
-        StarterKit,
-      ],
-    })
-  },
-  beforeUnmount() {
-    this.editor.destroy()
-  },
+  }
 };
 </script>
 
